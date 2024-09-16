@@ -1,6 +1,6 @@
 <h1 align="center">Shelf with movie</h1>
 <h3 align="center">Сайт-коллекция фильмов с системой рекомендаций на основе коллаборативной фильтрации</h3>
-
+<br>
 <h2>Функциональность сайта:</h2>
 <ul>
   <li>Регистрация пользователя - окно с полями login,email,password,confirm password</li>
