@@ -34,3 +34,9 @@
       </ul>
 </ul>
 <h2>Используемые технологии для реализации проекта:</h2>
+<ul>
+  <li>Для Backend части сайта: Django </li>
+  <li>Для Frontend части сайта: React.js</li>
+  <li>База данных: PostgreSQL </li>
+  <li>Библиотеки для анализа и рекомендаций: pandas, NumPy, scikit-learn, TensorFlow</li>
+</ul>
