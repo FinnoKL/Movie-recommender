@@ -11,8 +11,9 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
-
+app.use(cors({
+    origin: 'https://movie-recommender-dr2p.onrender.com'
+  }));
 
 app.use(express.static(path.join(__dirname, '../client/build')));
 

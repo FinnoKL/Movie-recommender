@@ -1,7 +1,7 @@
-const API_URL = "http://localhost:3001";
+const API_URL = "https://movie-recommender-dr2p.onrender.com"; // Замените на ваш URL
 
 export const registerUser = async (username, password) => {
-    console.log("Sending request to:", `${API_URL}/auth/register`); // Лог для отладки
+    console.log("Sending request to:", `${API_URL}/auth/register`);
     try {
         const response = await fetch(`${API_URL}/auth/register`, {
             method: "POST",
@@ -12,7 +12,8 @@ export const registerUser = async (username, password) => {
         });
 
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
         }
 
         return response.json();
@@ -34,7 +35,8 @@ export const loginUser = async (username, password) => {
         });
 
         if (!response.ok) {
-            throw new Error(`Ошибка: ${response.status}`);
+            const errorData = await response.json();
+            throw new Error(errorData.message || `Ошибка: ${response.status}`);
         }
 
         return response.json();
