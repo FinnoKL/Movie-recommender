@@ -1,13 +1,15 @@
+const fs = require('fs');
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+  host: 'movie-db-movieweek.c.aivencloud.com',
+  port: 15928,
+  user: 'avnadmin',
+  password: process.env.DB_PASSWORD, // Храни пароль в .env
+  database: 'defaultdb',
   ssl: {
-    rejectUnauthorized: true 
+    ca: fs.readFileSync('./certs/ca.pem'), // Путь к сертификату
+    rejectUnauthorized: true
   }
 });
 
