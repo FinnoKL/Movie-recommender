@@ -25,9 +25,10 @@ exports.register = async (req, res) => {
 // Логин
 exports.login = async (req, res) => {
     const { username, password } = req.body;
-
+    const connection = await pool.getConnection();  // Получаем соединение
+   
     try {
-        const [rows] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
+        const [rows] = await connection.query('SELECT * FROM users WHERE username = ?', [username]);
 
         if (rows.length === 0) {
             return res.status(401).json({ error: 'Неверное имя пользователя или пароль' });
@@ -56,5 +57,8 @@ exports.login = async (req, res) => {
     } catch (err) {
         console.error('Ошибка при входе:', err);
         res.status(500).json({ error: 'Ошибка сервера' });
+    }
+    finally {
+        connection.release();  // Обязательно освобождаем соединение
     }
 };
