@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
+const pool = require('./db'); // Предполагаю, что это ваша база данных
 const authRoutes = require('./routes/authRoutes');
-const path = require('path'); // Добавь эту строку
 const collectionRoutes = require('./routes/collectionRoutes');
 const reviewsRoutes = require('./routes/reviewsRoutes');
 const adminRoutes = require('./routes/adminRoutes');
@@ -12,24 +13,28 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: 'https://movie-recommender-dr2p.onrender.com'
-  }));
+    origin: 'https://movie-recommender-dr2p.onrender.com',  // Разрешаем только ваш frontend
+}));
 
+// Статика для фронтенда
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-
-
-  app.get('/test-db', async (req, res) => {
+// Проверка подключения к базе данных
+app.get('/test-db', async (req, res) => {
     try {
-      const [rows] = await pool.query('SELECT 1 + 1 AS result');
-      res.json({ db: "Connected!", calculation: rows[0].result });
+        const [rows] = await pool.query('SELECT 1 + 1 AS result');
+        res.json({ db: "Connected!", calculation: rows[0].result });
     } catch (err) {
-      res.status(500).json({ error: err.message });
+        res.status(500).json({ error: err.message });
     }
-  });
-  app.get('*', (req, res) => {
+});
+
+// Обработчик всех остальных запросов на фронтенд
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-  });
+});
+
+// Маршруты API
 app.use('/collection', collectionRoutes);
 app.use('/api', reviewsRoutes);
 app.use('/admin', adminRoutes);

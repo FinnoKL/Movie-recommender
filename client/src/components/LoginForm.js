@@ -24,16 +24,16 @@ const LoginForm = () => {
 
             setMessage(data.message || data.error);  // Устанавливаем сообщение в случае ошибки или успеха
 
-            if (data.success) {
+            if (data.token) {
                 const userData = { 
-                    username: data.user.username, 
-                    role: data.user.role, 
+                    username: data.username, 
+                    role: data.role, 
                     token: data.token 
                 };
                 login(userData);  // Сохраняем данные пользователя в контексте и localStorage
 
                 // Перенаправление в зависимости от роли пользователя
-                if (data.user.role === "admin") {
+                if (data.role === "admin") {
                     navigate("/admin");  // Если админ, перенаправляем в админскую панель
                 } else {
                     navigate("/profile");  // Если не админ, перенаправляем в профиль
