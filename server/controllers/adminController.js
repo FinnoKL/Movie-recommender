@@ -1,4 +1,4 @@
-const pool = require('../models/db');
+const pool = require('../db');
 
 // Получить все рекомендации (включая неопубликованные)
 exports.getAllRecommendations = async (req, res) => {

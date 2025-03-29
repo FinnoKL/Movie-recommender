@@ -1,4 +1,4 @@
-const pool = require('../models/db');
+const pool = require('../db');
 
 exports.addReview = async (req, res) => {
     const { user_id, recommendation_id, review_text } = req.body;

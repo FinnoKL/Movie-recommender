@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const pool = require('../models/db');
+const pool = require('../db');
 
 const SECRET_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyMTU0MDU1LCJleHAiOjE3NDQ3NDYwNTV9.gcfutO1xuTexYttBgvmMpkkGTEs5ahFa0tLka5tTDcY';
 

@@ -1,4 +1,4 @@
-const pool = require('../models/db');
+const pool = require('../db');
 
 exports.addToCollection = async (req, res) => {
     const { user_id, recommendation_id, status } = req.body;
